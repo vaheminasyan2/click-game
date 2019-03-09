@@ -1,7 +1,19 @@
+# Clicky Game!
+![heroimage](public/images/heroimage.PNG)
+
+A clicky game is a memory game. The application renders different images to the screen. Every time user clicks an image, it shuffles them in a random order. The user's score is incremented when clicking an image for the first time. The user's score is reset to 0 if they click the same image more than once, the game restarts. 
+
+Check it out [here](https://vaheminasyan2.github.io/click-game/).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Clicky Game!
-
+### Technology used:
+- Node.js
+- Javascript
+- React.js
+- jQuery
+- Bootstrap
+- GitHub pages
 
 ## Available Scripts
 
