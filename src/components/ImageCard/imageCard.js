@@ -3,9 +3,10 @@ import "./imageCard.css";
 
 function ImageCard(props) {
   return (
-      <div className="card m-4 lg-sm-md">
+      <div className="card m-4 lg-sm-md" onClick={()=> props.shuffleFriends(props)}>
         <img className="card-img-top" alt={props.name} src={props.image} />
       </div>
+    
   );
 }
 
