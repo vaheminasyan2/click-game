@@ -7,19 +7,35 @@ import Main from "./components/Main/main";
 //import Col from "./components/Col/col";
 import Row from "./components/Row/row";
 import Footer from "./components/Footer/footer";
-import friends from "./friends.json";
+import images from "./images.json";
 
 class App extends Component {
-  // Setting this.state.friends to the friends json array
+  // Setting this.state.images to the images json array
   state = {
-    friends
+    images,
+    score: 0,
+    topScore: 0,
+    userArr:[],
   };
 
+  shuffleImages = (image) => {
+    //console.log(image.id);
+    if (!this.state.userArr.includes(image.id)){
+      this.state.userArr.push(image.id);
+      this.setState({score: this.state.score +1});
+      if (this.state.topScore<=this.state.score) {
+        this.setState({topScore: this.state.topScore +1})
+      }
+    }
 
+    else {
+      this.setState({score: 0});
+      this.setState({userArr:[]})
+    }
 
-  shuffleFriends = () => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    const a = this.state.friends;
+    
+  
+    const a = this.state.images;
     var j, x, i;
 
     for (i = a.length - 1; i > 0; i--) {
@@ -28,35 +44,37 @@ class App extends Component {
       a[i] = a[j];
       a[j] = x;
     }
-    // Set this.state.friends equal to the new friends array
+    // Set this.state.images equal to the new images array
     this.setState({ a });
+
+    
   };
 
-
-
-
-// Map over this.state.friends and render a ImageCard component for each friend object
-render() {
-  return (
-    <Wrapper>
-      <Navbar />
-      <Title></Title>
-      <Main>
-        <Row>
-          {this.state.friends.map(friend => (
-            <ImageCard
-              shuffleFriends={this.shuffleFriends}
-              id={friend.id}
-              key={friend.id}
-              image={friend.image}
-            />
-          ))}
-        </Row>
-      </ Main>
-      <Footer />
-    </Wrapper>
-  );
-}
+  // Map over this.state.images and render a ImageCard component for each images object
+  render() {
+    return (
+      <Wrapper>
+        <Navbar />
+        <Title
+          score={this.state.score}
+          topScore={this.state.topScore}>
+        </Title>
+        <Main>
+          <Row>
+            {this.state.images.map(image => (
+              <ImageCard
+                shuffleImages={this.shuffleImages}
+                id={image.id}
+                key={image.id}
+                image={image.image}
+              />
+            ))}
+          </Row>
+        </ Main>
+        <Footer />
+      </Wrapper>
+    );
+  }
 }
 
 export default App;
